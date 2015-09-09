@@ -11,10 +11,10 @@ require('../server');
 describe('server test', function() {
   it('should respond to a get request', function(done) {
     chai.request('localhost:3000')
-      .get('/greet/kasim')
+      .get('/greet/Kasim')
       .end(function(err, res) {
         expect(res.status).to.eql(200);
-        expect(res.body).to.eql('Hello Kasim');
+        expect(res.text).to.eql('Hello Kasim');
         done();
       });
   });
@@ -24,7 +24,7 @@ describe('server test', function() {
       .post('/greet')
       .send({name: 'Kasim'})
       .end(function(err, res) {
-        expect(res.body.greet).to.eql('Hello Kasim');
+        expect(res.text).to.eql('{"greet":"Hello Kasim"}');
         done();
       });
   });
@@ -32,10 +32,11 @@ describe('server test', function() {
   it('tell the server time', function(done) {
     chai.request('localhost:3000')
       .get('/time')
+      .send()
       .end(function(err, res) {
         expect(res.status).to.eql(200);
         var d = new Date();
-        expect(res.body).to.eql(d.toString());
+        expect(res.text).to.eql(d.toString());
         done();
       });
   });
