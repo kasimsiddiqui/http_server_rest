@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 
 require('../server');
 
-describe('our server', function() {
+describe('greet kasim', function() {
   it('should respond to a get request', function(done) {
     chai.request('localhost:3000')
       .get('/greet/kasim')
@@ -18,7 +18,7 @@ describe('our server', function() {
       });
   });
 
-  it('should greet by name for post requests', function(done) {
+  it('post request', function(done) {
     chai.request('localhost:3000')
       .post('/greet')
       .send({name: 'Kasim'})
